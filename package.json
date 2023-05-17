@@ -1,0 +1,25 @@
+{
+  "name": "solid-study",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Gabriel Rocha Portugal",
+    "email": "gabrielrportugal@outlook.com",
+    "url": "https://github.com/gabrielrportugal"
+  },
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.1.7",
+    "tsup": "^6.7.0",
+    "tsx": "^3.12.7",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "fastify": "^4.17.0"
+  }
+}

@@ -3,7 +3,7 @@ import { GymsRepository } from '@/repositories/prisma/prisma-gyms-repository';
 import { CheckInUseCase } from '../check-in';
 
 // Factory Pattern
-export function makeAuthenticateUseCase() {
+export function makeCheckInUseCase() {
   const prismaCheckInsRepository = new PrismaCheckInsRepository();
   const prismaGymsRepository = new GymsRepository();
 

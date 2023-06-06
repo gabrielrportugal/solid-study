@@ -1,18 +1,39 @@
 import { Prisma, Gym } from '@prisma/client';
 import { FindManyNearbyParams, IGymsRepository } from '../gyms-repository.interface';
+import { prisma } from '@/lib/prisma';
 
 export class GymsRepository implements IGymsRepository {
-  findById(id: string): Promise<Gym | null> {
-    throw new Error('Method not implemented.');
+  async findById(id: string): Promise<Gym | null> {
+    return prisma.gym.findUnique({
+      where: {
+        id
+      }
+    });
   }
-  create(data: Prisma.GymCreateInput): Promise<Gym> {
-    throw new Error('Method not implemented.');
+
+  async create(data: Prisma.GymCreateInput): Promise<Gym> {
+    return prisma.gym.create({data});
   }
-  searchMany(query: string, page: number): Promise<Gym[]> {
-    throw new Error('Method not implemented.');
+
+  async searchMany(query: string, page: number): Promise<Gym[]> {
+    return prisma.gym.findMany({
+      where: {
+        title: {
+          contains: query
+        }
+      },
+      take: 20,
+      skip: (page - 1) * 20,
+    });
   }
-  findManyNearby(params: FindManyNearbyParams): Promise<Gym[]> {
-    throw new Error('Method not implemented.');
+
+  async findManyNearby({latitude, longitude}: FindManyNearbyParams): Promise<Gym[]> {
+    const gyms = await prisma.$queryRaw<Gym[]>`
+     SELECT * from gyms 
+     WHERE ( 6371 * acos( cos( radians(${latitude}) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(${longitude}) ) + sin( radians(${latitude}) ) * sin( radians( latitude ) ) ) ) <= 10
+    `;
+
+    return gyms;
   }
 
 }

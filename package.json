@@ -15,11 +15,11 @@
     "build": "tsup src --out-dir build",
     "test:create-prisma-environment": "npm link ./prisma/vitest-environment-prisma",
     "test:install-prisma-environment": "npm link vitest-environment-prisma",
-    "test": "vitest run --dit src/use-cases",
+    "test": "vitest run --dir src/use-cases",
     "test:e2e": "vitest run --dir src/http",
     "test:e2e:watch": "vitest --dir src/http",
     "pretest:e2e": "run-s test:create-prisma-environment test:install-prisma-environment",
-    "test:watch": "vitest  --dit src/use-cases",
+    "test:watch": "vitest  --dir src/use-cases",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui"
   },
@@ -42,6 +42,7 @@
     "vitest": "0.31.1"
   },
   "dependencies": {
+    "@fastify/cookie": "8.3.0",
     "@fastify/jwt": "7.0.0",
     "@prisma/client": "4.14.1",
     "bcryptjs": "2.4.3",

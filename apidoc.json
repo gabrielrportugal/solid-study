@@ -1,0 +1,11 @@
+{
+  "name": "solid-study",
+  "version": "0.0.1",
+  "description": "Gympass Clone",
+  "title": "Gympass",
+  "template": {
+    "withCompare": false,
+    "withGenerator": true,
+    "aloneDisplay": true
+  }
+}
